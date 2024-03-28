@@ -1,5 +1,6 @@
 import 'package:daimox_login/reusable_widgets/reusable_widget.dart';
-import 'package:daimox_login/screens/home_screen.dart';
+
+import 'package:daimox_login/screens/inicio.dart';
 import 'package:daimox_login/screens/signup_screen.dart';
 import 'package:daimox_login/utilis/color_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -133,7 +134,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           .then((value) {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                          MaterialPageRoute(builder: (context) => Inicio()),
                         );
                       }).catchError((error) {
                         showDialog(
