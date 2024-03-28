@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "117652544241",
+    "project_id": "deimox2-63fc8",
+    "storage_bucket": "deimox2-63fc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117652544241:android:0874bd79dac36ae84d2750",
+        "android_client_info": {
+          "package_name": "com.deimox2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbVwnLtJSl1APBknLRmjSKJpw8YKVBQ2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
