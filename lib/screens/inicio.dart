@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:daimox_login/screens/home_screen.dart';
+import 'package:daimox_login/screens/profile_screen.dart'; // Importa la pantalla que deseas abrir
 
 class Inicio extends StatelessWidget {
-  const Inicio({super.key});
+  const Inicio({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class Inicio extends StatelessWidget {
               ),
               Image.asset('assets/images/logotipo.png'),
               Container(
-                height: 500,
+                height: 700,
                 width: 325,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 55, 64, 70),
@@ -38,7 +39,7 @@ class Inicio extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     Text(
                       'Pausas Activas',
@@ -119,6 +120,39 @@ class Inicio extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20), // Espacio adicional
+                    // Agrega aquí las dos imágenes adicionales
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfileScreen(), // Reemplaza "OtraPantalla()" con el nombre de tu pantalla
+                              ),
+                            );
+                          },
+                          child: _buildIconWithDescription(
+                            'assets/images/ajuste.png',
+                            'Perfil',
+                            context,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Agrega aquí la navegación para la segunda imagen
+                          },
+                          child: _buildIconWithDescription(
+                            'assets/images/cerrar_sesion.png',
+                            'Salir',
+                            context,
+                          ),
                         ),
                       ],
                     ),
