@@ -1,5 +1,6 @@
 
 
+import 'package:daimox_login/screens/profile_screen.dart';
 import 'package:daimox_login/screens/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SignInScreen(),
+     // home: ProfileScreen(),
     );
   }
 }
