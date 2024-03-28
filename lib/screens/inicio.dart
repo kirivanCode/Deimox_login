@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:daimox_login/screens/home_screen.dart';
 import 'package:daimox_login/screens/profile_screen.dart'; // Importa la pantalla que deseas abrir
+import 'package:daimox_login/screens/signin_screen.dart';
 
 class Inicio extends StatelessWidget {
   const Inicio({Key? key});
@@ -20,146 +21,152 @@ class Inicio extends StatelessWidget {
             ],
           ),
         ),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Image.asset('assets/images/logotipo.png'),
-              Container(
-                height: 700,
-                width: 325,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 55, 64, 70),
-                  borderRadius: BorderRadius.circular(10),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 10,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Pausas Activas',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                Image.asset('assets/images/logotipo.png'),
+                Container(
+                  height: 650,
+                  width: 325,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 55, 64, 70),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Menú',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                      Text(
+                        'Pausas Activas',
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Menú',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen(),
+                                    ),
+                                  );
+                                },
+                                child: _buildIconWithDescription(
+                                  'assets/images/ejercicio.png',
+                                  'Activos',
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomeScreen(),
-                                  ),
-                                );
-                              },
-                              child: _buildIconWithDescription(
-                                'assets/images/ejercicio.png',
-                                'Activos',
-                                context,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 10),
-                            GestureDetector(
-                              onTap: () {
-                                // Agrega aquí la navegación para las otras imágenes según sea necesario
-                              },
-                              child: _buildIconWithDescription(
-                                'assets/images/empresario.png',
-                                'Cuerpo',
-                                context,
+                              SizedBox(height: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                },
+                                child: _buildIconWithDescription(
+                                  'assets/images/empresario.png',
+                                  'Cuerpo',
+                                  context,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                // Agrega aquí la navegación para las otras imágenes según sea necesario
-                              },
-                              child: _buildIconWithDescription(
-                                'assets/images/triangulo.png',
-                                'Pasivos',
-                                context,
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                },
+                                child: _buildIconWithDescription(
+                                  'assets/images/triangulo.png',
+                                  'Pasivos',
+                                  context,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 10),
-                            GestureDetector(
-                              onTap: () {
-                                // Agrega aquí la navegación para las otras imágenes según sea necesario
-                              },
-                              child: _buildIconWithDescription(
-                                'assets/images/tiempo.png',
-                                'Alarma',
-                                context,
+                              SizedBox(height: 10),
+                              GestureDetector(
+                                onTap: () {
+                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                },
+                                child: _buildIconWithDescription(
+                                  'assets/images/tiempo.png',
+                                  'Alarma',
+                                  context,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20), // Espacio adicional
-                    // Agrega aquí las dos imágenes adicionales
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20), // Espacio adicional
+                      // Agrega aquí las dos imágenes adicionales
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfileScreen(),
+                                ),
+                              );
+                            },
+                            child: _buildIconWithDescription(
+                              'assets/images/ajuste.png',
+                              'Perfil',
                               context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfileScreen(), // Reemplaza "OtraPantalla()" con el nombre de tu pantalla
-                              ),
-                            );
-                          },
-                          child: _buildIconWithDescription(
-                            'assets/images/ajuste.png',
-                            'Perfil',
-                            context,
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            // Agrega aquí la navegación para la segunda imagen
-                          },
-                          child: _buildIconWithDescription(
-                            'assets/images/cerrar_sesion.png',
-                            'Salir',
-                            context,
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignInScreen(),
+                                ),
+                              );
+                            },
+                            child: _buildIconWithDescription(
+                              'assets/images/cerrar_sesion.png',
+                              'Salir',
+                              context,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
