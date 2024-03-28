@@ -5,6 +5,17 @@ import 'package:daimox_login/utilis/color_utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:daimox_login/utilis/color_utils.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    theme: ThemeData(primaryColor: const Color.fromARGB(255, 0, 0, 0)),
+    debugShowCheckedModeBanner: false,
+    home: SignInScreen(),
+  ));
+}
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -13,10 +24,10 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInScreenState();
 }
 
-
 class _SignInScreenState extends State<SignInScreen> {
-TextEditingController _passwordTextController = TextEditingController();
-TextEditingController _emailTextController = TextEditingController();
+  bool _passwordHidden = true;
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,86 +35,199 @@ TextEditingController _emailTextController = TextEditingController();
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors:  [
               hexStringToColor("000000"),
               hexStringToColor("313131"),
               hexStringToColor("161616")
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter
-          )
+            ],
+          ),
         ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-              20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            padding: EdgeInsets.all(20.0),
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 21, 21, 21),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 2,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   logoWidget("assets/images/logo.png"),
                   SizedBox(
                     height: 30,
                   ),
-                  reusableTextField("Ingrese el usuario", Icons.person_2_outlined, false, 
-                  _emailTextController),
-                  SizedBox(
-                    height: 22,
-                  ),
-                  reusableTextField("Ingrese la contraseña", Icons.lock_outline, true, 
-                    _passwordTextController),
-                  SizedBox(
-                    height: 22,
-                  ),
-                  signInSignUpButton(context, true, () {
-                      FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                        email: _emailTextController.text, password: _passwordTextController.text)
-                    .then((value){
-                    Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomeScreen())) ;
-                    
-                  }).onError((error, stackTrace){
-                    print("Error ${error.toString()}");
-                  });
-                  }),
-                 signUpOption()
-                ],
-                ),
-              
-              ),
-            
-              ),
 
+                  Text(
+                    'Ingrese su cuenta',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: TextField(
+                      controller: _emailTextController,
+                      decoration: InputDecoration(
+                        labelText: 'Correo Electrónico',
+                        labelStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(
+                          FontAwesomeIcons.envelope,
+                          size: 17,
+                          color: Colors.white,
+                        ),
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: TextField(
+                      controller: _passwordTextController,
+                      obscureText: _passwordHidden,
+                      decoration: InputDecoration(
+                        labelText: 'Contraseña',
+                        labelStyle: TextStyle(color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _passwordHidden
+                                ? FontAwesomeIcons.eyeSlash
+                                : FontAwesomeIcons.eye,
+                            size: 17,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _passwordHidden = !_passwordHidden;
+                            });
+                          },
+                        ),
+                        hintStyle: TextStyle(color: Colors.white),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () {
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text,
+                          )
+                          .then((value) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      }).catchError((error) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Error de inicio de sesión'),
+                              content: Text('Credenciales incorrectas. Verifica tu correo y contraseña.'),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Cerrar'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(70),
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Color(0xFF98FF98),
+                            Color(0xFF00FF00),
+                            Color(0xFF50C878),
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Text(
+                          'Iniciar Sesión',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    'Iniciar Sesión con:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(FontAwesomeIcons.facebookF, color: Colors.white),
+                      Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
+                      Icon(FontAwesomeIcons.google, color: Colors.white),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "No tienes una cuenta?",
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignUpScreen()),
+                          );
+                        },
+                        child: Text(
+                          " registrarse",
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
-
- Row signUpOption() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Text(
-        "No tienes una cuenta?",
-        style: TextStyle(color: Colors.white70),
-      ),
-      GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SignUpScreen()),
-          );
-        },
-        child: Text(
-          " registrarse",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-    ],
-  );
 }
-
-
-}
-
-
-
-
-
