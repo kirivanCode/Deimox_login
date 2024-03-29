@@ -1,7 +1,9 @@
+import 'package:daimox_login/screens/exer_cuerpo.dart';
 import 'package:flutter/material.dart';
 import 'package:daimox_login/screens/home_screen.dart';
 import 'package:daimox_login/screens/profile_screen.dart'; // Importa la pantalla que deseas abrir
 import 'package:daimox_login/screens/signin_screen.dart';
+import 'package:daimox_login/screens/exer_pasivos.dart';
 
 class Inicio extends StatelessWidget {
   const Inicio({Key? key});
@@ -88,7 +90,12 @@ class Inicio extends StatelessWidget {
                               SizedBox(height: 10),
                               GestureDetector(
                                 onTap: () {
-                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen3(),
+                                    ),
+                                  );
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/empresario.png',
@@ -102,7 +109,12 @@ class Inicio extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeScreen2(),
+                                    ),
+                                  );
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/triangulo.png',
@@ -113,7 +125,7 @@ class Inicio extends StatelessWidget {
                               SizedBox(height: 10),
                               GestureDetector(
                                 onTap: () {
-                                  // Agrega aquí la navegación para las otras imágenes según sea necesario
+                                  
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/tiempo.png',
