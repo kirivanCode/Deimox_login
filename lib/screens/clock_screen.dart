@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 
 class ClockScreen extends StatefulWidget {
   @override
@@ -11,25 +9,37 @@ class ClockScreen extends StatefulWidget {
 class _ClockScreenState extends State<ClockScreen> {
   TimeOfDay _selectedTime = TimeOfDay.now();
   bool _alarmActive = false;
+  final player = AudioPlayer();
+  final String audioPath = 'assets/images/alarmaxd.mp3'; // Ruta del archivo de audio
 
-  // Sonido de alarma
-  final player = AudioCache();
+  void _toggleAlarm() {
+    setState(() {
+      _alarmActive = !_alarmActive;
+      if (_alarmActive) {
+        // Reproducir el sonido de la alarma
+        player.play(audioPath as Source);
+      } else {
+        // Detener la reproducción del sonido
+        player.stop();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Configuración de Alarma'),
-        backgroundColor: Colors.black, // Color de fondo oscuro
+        backgroundColor: Colors.black,
       ),
-      backgroundColor: Colors.black, // Color de fondo oscuro
+      backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Hora de la alarma:',
-              style: TextStyle(fontSize: 20.0, color: Colors.white), // Color de texto blanco
+              style: TextStyle(fontSize: 20.0, color: Colors.white),
             ),
             SizedBox(height: 10.0),
             ElevatedButton(
@@ -55,19 +65,12 @@ class _ClockScreenState extends State<ClockScreen> {
               children: [
                 Text(
                   'Alarma activa:',
-                  style: TextStyle(fontSize: 20.0, color: Colors.white), // Color de texto blanco
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
                 Switch(
                   value: _alarmActive,
                   onChanged: (value) {
-                    setState(() {
-                      _alarmActive = value;
-                      if (_alarmActive) {
-                        //_setAlarm();
-                      } else {
-                        //_cancelAlarm();
-                      }
-                    });
+                    _toggleAlarm(); // Cambiar el estado de la alarma
                   },
                 ),
               ],
@@ -77,5 +80,4 @@ class _ClockScreenState extends State<ClockScreen> {
       ),
     );
   }
-
 }
