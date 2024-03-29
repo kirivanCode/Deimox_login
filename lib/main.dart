@@ -1,4 +1,5 @@
 
+import 'package:daimox_login/screens/clock_screen.dart';
 import 'package:daimox_login/screens/inicio.dart';
 import 'package:daimox_login/screens/profile_screen.dart';
 import 'package:daimox_login/screens/signin_screen.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
       home: const SignInScreen(),
       //home: Inicio(),
       //home: ProfileScreen(),
+      //home: ClockScreen(),
     );
   }
 }

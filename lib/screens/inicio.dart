@@ -1,3 +1,4 @@
+import 'package:daimox_login/screens/clock_screen.dart';
 import 'package:daimox_login/screens/exer_cuerpo.dart';
 import 'package:flutter/material.dart';
 import 'package:daimox_login/screens/home_screen.dart';
@@ -125,7 +126,12 @@ class Inicio extends StatelessWidget {
                               SizedBox(height: 10),
                               GestureDetector(
                                 onTap: () {
-                                  
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ClockScreen(), // Aquí se abre la pantalla de configuración de la alarma
+                                    ),
+                                  );
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/tiempo.png',
