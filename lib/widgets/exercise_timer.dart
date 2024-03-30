@@ -14,7 +14,8 @@ class ExerciseTimer extends StatefulWidget {
     required this.onNext,
     required this.onPrevious,
     this.autoRestart = false, // Valor por defecto es false
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ExerciseTimerState createState() => _ExerciseTimerState();
@@ -73,6 +74,7 @@ class _ExerciseTimerState extends State<ExerciseTimer> {
     _timer.cancel();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {

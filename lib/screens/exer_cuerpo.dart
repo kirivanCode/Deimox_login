@@ -4,7 +4,6 @@ import 'package:daimox_login/screens/timer_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen3 extends StatefulWidget {
   const HomeScreen3({Key? key}) : super(key: key);
 
@@ -26,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen3> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Ejercicios de Pausas Activas de Cuerpo',
+          'Ejercicios de Pausas de Cuerpo',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -46,6 +45,11 @@ class _HomeScreenState extends State<HomeScreen3> {
             },
           ),
         ],
+        iconTheme: IconThemeData(
+          color:
+              Colors.white, // Cambia el color de la flecha de devolver a blanco
+          size: 30, // Aumenta el tamaño para hacerla más prominente
+        ),
       ),
       body: Container(
         color: Colors.black,

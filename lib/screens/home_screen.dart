@@ -4,7 +4,6 @@ import 'package:daimox_login/screens/timer_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -46,6 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
+        iconTheme: IconThemeData(
+          color:
+              Colors.white, // Cambia el color de la flecha de devolver a blanco
+          size: 30, // Aumenta el tamaño para hacerla más prominente
+        ),
       ),
       body: Container(
         color: Colors.black,

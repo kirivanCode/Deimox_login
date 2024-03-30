@@ -84,7 +84,7 @@ class Inicio extends StatelessWidget {
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/ejercicio.png',
-                                  'Activos',
+                                  'Activas',
                                   context,
                                 ),
                               ),
@@ -119,7 +119,7 @@ class Inicio extends StatelessWidget {
                                 },
                                 child: _buildIconWithDescription(
                                   'assets/images/triangulo.png',
-                                  'Pasivos',
+                                  'Pasivas',
                                   context,
                                 ),
                               ),
@@ -129,7 +129,8 @@ class Inicio extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ClockScreen(), // Aquí se abre la pantalla de configuración de la alarma
+                                      builder: (context) =>
+                                          ClockScreen(), // Aquí se abre la pantalla de configuración de la alarma
                                     ),
                                   );
                                 },

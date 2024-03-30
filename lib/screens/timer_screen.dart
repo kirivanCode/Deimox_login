@@ -15,12 +15,23 @@ class TimerScreen extends StatefulWidget {
 class _TimerScreenState extends State<TimerScreen> {
   late int _currentExerciseIndex;
   late Exercise _currentExercise;
+  late List<int> _originalDurations;
+  late ExerciseTimer _exerciseTimer;
 
   @override
   void initState() {
     super.initState();
     _currentExerciseIndex = widget.exerciseIndex;
     _currentExercise = widget.exercises[_currentExerciseIndex];
+    _originalDurations = List.filled(
+        widget.exercises.length, 30); 
+    _exerciseTimer = ExerciseTimer(
+      duration: _originalDurations[_currentExerciseIndex],
+      onTimerEnd: _goToNextExercise,
+      onNext: _goToNextExercise,
+      onPrevious: _goToPreviousExercise,
+      autoRestart: true,
+    );
   }
 
   void _goToNextExercise() {
@@ -28,6 +39,8 @@ class _TimerScreenState extends State<TimerScreen> {
       setState(() {
         _currentExerciseIndex++;
         _currentExercise = widget.exercises[_currentExerciseIndex];
+        _resetTimer(_originalDurations[
+            _currentExerciseIndex]); 
       });
     }
   }
@@ -37,8 +50,22 @@ class _TimerScreenState extends State<TimerScreen> {
       setState(() {
         _currentExerciseIndex--;
         _currentExercise = widget.exercises[_currentExerciseIndex];
+        _resetTimer(_originalDurations[
+            _currentExerciseIndex]); 
       });
     }
+  }
+
+  void _resetTimer(int duration) {
+    _exerciseTimer = ExerciseTimer(
+      key:
+          UniqueKey(), 
+      duration: duration,
+      onTimerEnd: _goToNextExercise,
+      onNext: _goToNextExercise,
+      onPrevious: _goToPreviousExercise,
+      autoRestart: true,
+    );
   }
 
   @override
@@ -49,7 +76,7 @@ class _TimerScreenState extends State<TimerScreen> {
           'Pausa Activa: ${_currentExercise.name}',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        centerTitle: true, // Centrar el título en la AppBar
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -57,13 +84,7 @@ class _TimerScreenState extends State<TimerScreen> {
           children: [
             Text(_currentExercise.description),
             SizedBox(height: 20),
-            ExerciseTimer(
-              duration: 30, // Cambia a la duración que desees
-              onTimerEnd: _goToNextExercise,
-              onNext: _goToNextExercise,
-              onPrevious: _goToPreviousExercise,
-              autoRestart: true, // Habilita el reinicio automático
-            ),
+            _exerciseTimer,
           ],
         ),
       ),

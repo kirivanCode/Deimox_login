@@ -46,6 +46,10 @@ class _HomeScreenState extends State<HomeScreen2> {
             },
           ),
         ],
+         iconTheme: IconThemeData(
+          color: Colors.white, // Cambia el color de la flecha de devolver a blanco
+          size: 30, // Aumenta el tamaño para hacerla más prominente
+        ),
       ),
       body: Container(
         color: Colors.black,

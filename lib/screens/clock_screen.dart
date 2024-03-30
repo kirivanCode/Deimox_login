@@ -10,7 +10,8 @@ class _ClockScreenState extends State<ClockScreen> {
   TimeOfDay _selectedTime = TimeOfDay.now();
   bool _alarmActive = false;
   final player = AudioPlayer();
-  final String audioPath = 'assets/images/alarmaxd.mp3'; // Ruta del archivo de audio
+  final String audioPath =
+      'assets/images/alarmaxd.mp3'; // Ruta del archivo de audio
 
   void _toggleAlarm() {
     setState(() {
@@ -29,14 +30,29 @@ class _ClockScreenState extends State<ClockScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Configuración de Alarma'),
+        title: Text(
+          'Configuración de Alarma',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.black,
+        iconTheme: IconThemeData(
+          color: Colors.white,
+        ),
       ),
       backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/images/reloj.png',
+              width: 200, // Ancho de la imagen
+              height: 200, // Alto de la imagen
+            ),
+            SizedBox(height: 20),
             Text(
               'Hora de la alarma:',
               style: TextStyle(fontSize: 20.0, color: Colors.white),
