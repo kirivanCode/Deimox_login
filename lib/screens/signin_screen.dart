@@ -65,7 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  logoWidget("assets/images/logo.png"),
+                  logoWidget("assets/images/logo2.png"),
                   SizedBox(
                     height: 30,
                   ),

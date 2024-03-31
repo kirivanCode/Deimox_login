@@ -32,12 +32,12 @@ class Inicio extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Image.asset('assets/images/logotipo.png'),
+                Image.asset('assets/images/logitipo22.png'),
                 Container(
                   height: 650,
                   width: 325,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 55, 64, 70),
+                    color: Color.fromARGB(255, 24, 24, 24),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
