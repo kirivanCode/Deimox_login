@@ -13,10 +13,10 @@ class HomeScreen3 extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen3> {
   final List<Exercise> exercises = [
-    Exercise(name: 'Flexiones de pecho', description: 'Descripción...'),
-    Exercise(name: 'Sentadilla', description: 'Descripción...'),
-    Exercise(name: 'Skipping', description: 'Trotar sin moverse'),
-    Exercise(name: 'Abdominales', description: 'Descripción...'),
+    Exercise(name: 'Flexiones de pecho', description: 'Descripción...', imagePath: "assets/images/xd.png"),
+    Exercise(name: 'Sentadilla', description: 'Descripción...', imagePath: "assets/images/xd.png"),
+    Exercise(name: 'Skipping', description: 'Trotar sin moverse', imagePath: "assets/images/xd.png"),
+    Exercise(name: 'Abdominales', description: 'Descripción...', imagePath: "assets/images/xd.png"),
     // Agregar más ejercicios según sea necesario
   ];
 
