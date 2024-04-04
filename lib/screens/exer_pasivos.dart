@@ -4,7 +4,6 @@ import 'package:daimox_login/screens/timer_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class HomeScreen2 extends StatefulWidget {
   const HomeScreen2({Key? key}) : super(key: key);
 
@@ -14,10 +13,22 @@ class HomeScreen2 extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen2> {
   final List<Exercise> exercises = [
-    Exercise(name: 'Yoga de ojos', description: 'Descripción...', imagePath: "assets/images/yogaojos.png"),
-    Exercise(name: 'Meditación', description: 'Descripción...', imagePath: "assets/images/yoga.png"),
-    Exercise(name: 'Cerrar los ojos', description: 'Descripción...', imagePath: "assets/images/closeojos.png"),
-    Exercise(name: 'Musica relajante', description: 'Descripción...', imagePath: "assets/images/musicrelax.png"),
+    Exercise(
+        name: 'Yoga de ojos',
+        description: 'cerrar y abrir los ojos',
+        imagePath: "assets/images/yogaojos.png"),
+    Exercise(
+        name: 'Meditación',
+        description: 'Descripción...',
+        imagePath: "assets/images/yoga.png"),
+    Exercise(
+        name: 'Cerrar los ojos',
+        description: 'Descripción...',
+        imagePath: "assets/images/closeojos.png"),
+    Exercise(
+        name: 'Musica relajante',
+        description: 'Descripción...',
+        imagePath: "assets/images/musicrelax.png"),
     // Agregar más ejercicios según sea necesario
   ];
 
@@ -46,8 +57,9 @@ class _HomeScreenState extends State<HomeScreen2> {
             },
           ),
         ],
-         iconTheme: IconThemeData(
-          color: Colors.white, // Cambia el color de la flecha de devolver a blanco
+        iconTheme: IconThemeData(
+          color:
+              Colors.white, // Cambia el color de la flecha de devolver a blanco
           size: 30, // Aumenta el tamaño para hacerla más prominente
         ),
       ),
@@ -64,6 +76,11 @@ class _HomeScreenState extends State<HomeScreen2> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: ListTile(
+                  leading: Image.asset(
+                    exercises[index].imagePath,
+                    width: 60,
+                    height: 60,
+                  ),
                   title: Text(
                     exercises[index].name,
                     style: TextStyle(
@@ -71,10 +88,13 @@ class _HomeScreenState extends State<HomeScreen2> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(
-                    exercises[index].description,
-                    style: TextStyle(
-                      color: Colors.white70,
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      exercises[index].description,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
                   onTap: () {

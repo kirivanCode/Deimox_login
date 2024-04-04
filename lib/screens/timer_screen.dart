@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:daimox_login/models/exercise.dart';
 import 'package:daimox_login/widgets/exercise_timer.dart';
 
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
 class TimerScreen extends StatefulWidget {
   final List<Exercise> exercises;
   final int exerciseIndex;
-  
 
   TimerScreen({required this.exercises, required this.exerciseIndex});
 
@@ -92,18 +91,18 @@ class _TimerScreenState extends State<TimerScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              '${_currentExercise.imagePath}', // Ruta de la imagen
+              width: 200,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 20),
             Text(
               _currentExercise.description,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18, color: Colors.white),
             ), // Descripción de la actividad
-            SizedBox(height: 20),
-            Image.asset(
-          '${_currentExercise.imagePath}', // Ruta de la imagen
-          width: 200,
-          height: 200,
-          fit: BoxFit.cover,
-        ),
             SizedBox(height: 20),
             _exerciseTimer,
           ],

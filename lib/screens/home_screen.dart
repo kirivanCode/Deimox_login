@@ -13,10 +13,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Exercise> exercises = [
-    Exercise(name: 'Estiramiento de brazos', description: 'Descripción...', imagePath: "assets/images/xd.png"),
-    Exercise(name: 'Estiramiento de piernas', description: 'Descripción...', imagePath: "assets/images/xd.png"),
-    Exercise(name: 'Respiración profunda', description: 'Descripción...', imagePath: "assets/images/xd.png"),
-    Exercise(name: 'Girar el cuello', description: 'Descripción...', imagePath: "assets/images/xd.png"),
+    Exercise(
+        name: 'Estiramiento de brazos',
+        description: 'Descripción...',
+        imagePath: "assets/images/xd.png"),
+    Exercise(
+        name: 'Estiramiento de piernas',
+        description: 'Descripción...',
+        imagePath: "assets/images/xd.png"),
+    Exercise(
+        name: 'Respiración profunda',
+        description: 'Descripción...',
+        imagePath: "assets/images/xd.png"),
+    Exercise(
+        name: 'Girar el cuello',
+        description: 'Descripción...',
+        imagePath: "assets/images/xd.png"),
     // Agregar más ejercicios según sea necesario
   ];
 
@@ -64,6 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: ListTile(
+                  leading: Image.asset(
+                    exercises[index].imagePath,
+                    width: 60,
+                    height: 60,
+                  ),
                   title: Text(
                     exercises[index].name,
                     style: TextStyle(
@@ -71,10 +88,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  subtitle: Text(
-                    exercises[index].description,
-                    style: TextStyle(
-                      color: Colors.white70,
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      exercises[index].description,
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
                     ),
                   ),
                   onTap: () {
