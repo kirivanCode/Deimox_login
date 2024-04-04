@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^4.15.10
   flutter_ringtone_player: ^4.0.0+2
   audioplayers: ^6.0.0
+  url_launcher: ^6.0.9
 
 dev_dependencies:
   flutter_test:

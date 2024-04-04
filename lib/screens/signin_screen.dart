@@ -1,5 +1,5 @@
 import 'package:daimox_login/reusable_widgets/reusable_widget.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:daimox_login/screens/inicio.dart';
 import 'package:daimox_login/screens/signup_screen.dart';
 import 'package:daimox_login/utilis/color_utils.dart';
@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 //import 'package:daimox_login/utilis/color_utils.dart';
 
 
@@ -16,6 +17,16 @@ void main() {
     debugShowCheckedModeBanner: false,
     home: SignInScreen(),
   ));
+}
+
+// Función para abrir URL
+// Función para abrir URL
+void _launchURL(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
+  } else {
+    throw 'No se pudo abrir la URL: $url';
+  }
 }
 
 class SignInScreen extends StatefulWidget {
@@ -193,36 +204,31 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                      Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
-                      Icon(FontAwesomeIcons.google, color: Colors.white),
-                    ],
-                  ),
+                  
                   SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "No tienes una cuenta?",
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignUpScreen()),
-                          );
-                        },
-                        child: Text(
-                          " registrarse",
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  ),
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  children: [
+    GestureDetector(
+      onTap: () {
+        _launchURL('https://www.facebook.com');// Lógica para abrir la URL de Facebook
+      },
+      child: Icon(FontAwesomeIcons.facebookF, color: Colors.white),
+    ),
+    GestureDetector(
+      onTap: () {
+        _launchURL('https://www.facebook.com');// Lógica para abrir la URL del correo electrónico
+      },
+      child: Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
+    ),
+    GestureDetector(
+      onTap: () {
+        _launchURL('https://www.facebook.com');// Lógica para abrir la URL de Google
+      },
+      child: Icon(FontAwesomeIcons.google, color: Colors.white),
+    ),
+  ],
+),
                 ],
               ),
             ),
