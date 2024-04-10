@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'inicio.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'package:image_picker/image_picker.dart'; // Importa image_picker
+//import 'package:file_selector/file_selector.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -104,13 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      setState(() {
-                        if (_profileImage == "assets/images/xd.png") {
-                          _profileImage = "assets/images/ayuda.jpg";
-                        } else {
-                          _profileImage = "assets/images/xd.png";
-                        }
-                      });
+                      _seleccionarImagen(); // Llama a la función para seleccionar imagen
                     },
                     icon: Icon(Icons.photo_camera),
                     color: Colors.white,
@@ -145,12 +142,52 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  // Función para seleccionar imagen de la galería
+ Future<void> _seleccionarImagen() async {
+  // Aquí defines una lista de nombres de archivos de imagen que se encuentran en assets/images
+  final List<String> imagenes = [
+    'assets/images/xd.png',
+    'assets/images/ayuda.jpg',
+    // Añade más imágenes según sea necesario
+  ];
+
+  final String? imagenSeleccionada = await showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Selecciona una imagen'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: imagenes.map((String imagen) {
+              return ListTile(
+                title: Text(imagen),
+                onTap: () {
+                  Navigator.of(context).pop(imagen);
+                },
+              );
+            }).toList(),
+          ),
+        ),
+      );
+    },
+  );
+
+  
+  if (imagenSeleccionada != null) {
+    setState(() {
+      _profileImage = imagenSeleccionada;
+    });
+  }
+}
+
+
   void _guardarDatosEnFirestore(String nombre, int edad, int peso) {
     final firestore = FirebaseFirestore.instance;
     firestore.collection('perfiles').add({
       'nombre': nombre,
       'edad': edad,
       'peso': peso,
+      'imagen': _profileImage, // Guarda la URL de la imagen
     }).then((value) {
       print('Datos guardados en Firestore con ID: ${value.id}');
       // Navegar a la pantalla de perfil de datos
