@@ -10,7 +10,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 //import 'package:daimox_login/utilis/color_utils.dart';
 
-
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(primaryColor: const Color.fromARGB(255, 0, 0, 0)),
@@ -19,7 +18,6 @@ void main() {
   ));
 }
 
-// Función para abrir URL
 // Función para abrir URL
 void _launchURL(String url) async {
   if (await canLaunchUrlString(url)) {
@@ -80,7 +78,6 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: 30,
                   ),
-                  
                   Text(
                     'Ingrese su cuenta',
                     style: TextStyle(
@@ -204,8 +201,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 
-                  20),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -235,44 +231,29 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                      height:
-                          20), // Espacio adicional antes del botón de registro
-                  GestureDetector(
-                    onTap: () {
-                      // Navegación a la pantalla de registro
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpScreen()),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(70),
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color(0xFF98FF98), // Color izquierdo
-                            Color(0xFF00FF00), // Color central
-                            Color(0xFF50C878), // Color derecho
-                          ],
-                        ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "No tienes una cuenta?",
+                        style: TextStyle(color: Colors.white70),
                       ),
-                      child: Padding(
-                        padding: EdgeInsets.all(12.0),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpScreen()),
+                          );
+                        },
                         child: Text(
-                          'Registrarse',
+                          " registrarse",
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
