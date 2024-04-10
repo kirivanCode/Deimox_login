@@ -1,6 +1,7 @@
 import 'package:daimox_login/reusable_widgets/reusable_widget.dart';
 import 'package:daimox_login/screens/home_screen.dart';
 import 'package:daimox_login/utilis/color_utils.dart';
+import 'package:daimox_login/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,14 +25,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Puedes usar Navigator.pop(context) para simplemente volver atrás
+            // O usar otra forma de navegación si es necesario
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => SignInScreen()),
+            );
+          },
+        ),
         title: Text(
           'Registro',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         iconTheme: IconThemeData(
-          color:
-              Colors.white, // Cambia el color de la flecha de devolver a blanco
-          size: 30, // Aumenta el tamaño para hacerla más prominente
+          color: Colors.white, // Cambia el color de los íconos a blanco
+          size: 30,
         ),
       ),
       body: SingleChildScrollView(
@@ -62,9 +76,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   color: Color.fromARGB(255, 24, 24, 24),
                   borderRadius: BorderRadius.circular(10),
                 ),
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(height: 20),
                     logoWidget("assets/images/logo2.png"),
                     SizedBox(
                       height: 30,

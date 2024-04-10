@@ -37,9 +37,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfil'),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        title: Text('Perfil',
+        style: TextStyle(
+        color: Colors.white, // Color del texto
+        fontWeight: FontWeight.bold, // Negrita
+         ),
+        ),
+        backgroundColor: Colors.black, // Fondo negro del AppBar
         centerTitle: true,
+        iconTheme: IconThemeData(
+          color: Colors.white, // Color de la flecha de retroceso y otros iconos del AppBar
+        ),
       ),
       backgroundColor: Color.fromARGB(255, 34, 34, 34),
       body: Center(

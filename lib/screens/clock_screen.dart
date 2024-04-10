@@ -38,11 +38,12 @@ class _ClockScreenState extends State<ClockScreen> {
           ),
         ),
         backgroundColor: Colors.black,
+        centerTitle: true,
         iconTheme: IconThemeData(
           color: Colors.white,
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 34, 34, 34),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

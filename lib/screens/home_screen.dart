@@ -44,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         backgroundColor: Colors.black,
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(Icons.logout),

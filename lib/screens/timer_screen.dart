@@ -73,6 +73,7 @@ class _TimerScreenState extends State<TimerScreen> {
         title: Text(
           'Pausa Activa: ${_currentExercise.name}',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          
         ),
         centerTitle: true,
         backgroundColor: Colors.green, // Color del fondo del AppBar
@@ -101,8 +102,12 @@ class _TimerScreenState extends State<TimerScreen> {
             Text(
               _currentExercise.description,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ), // Descripción de la actividad
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ), 
             SizedBox(height: 20),
             _exerciseTimer,
           ],
@@ -111,4 +116,3 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 }
-

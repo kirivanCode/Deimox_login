@@ -49,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors:  [
+            colors: [
               hexStringToColor("000000"),
               hexStringToColor("313131"),
               hexStringToColor("161616")
@@ -80,7 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: 30,
                   ),
-
+                  
                   Text(
                     'Ingrese su cuenta',
                     style: TextStyle(
@@ -139,9 +139,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     onTap: () {
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text,
-                          )
+                        email: _emailTextController.text,
+                        password: _passwordTextController.text,
+                      )
                           .then((value) {
                         Navigator.pushReplacement(
                           context,
@@ -153,7 +153,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text('Error de inicio de sesión'),
-                              content: Text('Credenciales incorrectas. Verifica tu correo y contraseña.'),
+                              content: Text(
+                                  'Credenciales incorrectas. Verifica tu correo y contraseña.'),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
@@ -203,32 +204,76 @@ class _SignInScreenState extends State<SignInScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 20),
-                  
-                  SizedBox(height: 20),
+                  SizedBox(height: 
+                  20),
                   Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: [
-    GestureDetector(
-      onTap: () {
-        _launchURL('https://www.facebook.com');// Lógica para abrir la URL de Facebook
-      },
-      child: Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-    ),
-    GestureDetector(
-      onTap: () {
-        _launchURL('https://www.facebook.com');// Lógica para abrir la URL del correo electrónico
-      },
-      child: Icon(FontAwesomeIcons.solidEnvelope, color: Colors.white),
-    ),
-    GestureDetector(
-      onTap: () {
-        _launchURL('https://www.facebook.com');// Lógica para abrir la URL de Google
-      },
-      child: Icon(FontAwesomeIcons.google, color: Colors.white),
-    ),
-  ],
-),
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL(
+                              'https://www.facebook.com'); // Lógica para abrir la URL de Facebook
+                        },
+                        child: Icon(FontAwesomeIcons.facebookF,
+                            color: Colors.white),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL(
+                              'https://www.facebook.com'); // Lógica para abrir la URL del correo electrónico
+                        },
+                        child: Icon(FontAwesomeIcons.solidEnvelope,
+                            color: Colors.white),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          _launchURL(
+                              'https://www.facebook.com'); // Lógica para abrir la URL de Google
+                        },
+                        child:
+                            Icon(FontAwesomeIcons.google, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                      height:
+                          20), // Espacio adicional antes del botón de registro
+                  GestureDetector(
+                    onTap: () {
+                      // Navegación a la pantalla de registro
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      );
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(70),
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Color(0xFF98FF98), // Color izquierdo
+                            Color(0xFF00FF00), // Color central
+                            Color(0xFF50C878), // Color derecho
+                          ],
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Text(
+                          'Registrarse',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
