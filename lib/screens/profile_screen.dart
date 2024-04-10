@@ -37,11 +37,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Perfil',
-        style: TextStyle(
-        color: Colors.white, // Color del texto
-        fontWeight: FontWeight.bold, // Negrita
-         ),
+        title: Text(
+          'Perfil',
+          style: TextStyle(
+            color: Colors.white, // Color del texto
+            fontWeight: FontWeight.bold, // Negrita
+          ),
         ),
         backgroundColor: Colors.black, // Fondo negro del AppBar
         centerTitle: true,
@@ -152,23 +153,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       'peso': peso,
     }).then((value) {
       print('Datos guardados en Firestore con ID: ${value.id}');
-      // Muestra un diálogo de éxito
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Éxito'),
-            content: Text('Los datos se han guardado correctamente.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
+      // Navegar a la pantalla de perfil de datos
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ProfileDataScreen(nombre: nombre, edad: edad, peso: peso),
+        ),
       );
     }).catchError((error) {
       print('Error al guardar los datos: $error');
@@ -191,5 +181,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
       );
     });
+  }
+}
+
+class ProfileDataScreen extends StatelessWidget {
+  final String nombre;
+  final int edad;
+  final int peso;
+
+  ProfileDataScreen({required this.nombre, required this.edad, required this.peso});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Perfil de Usuario'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Nombre: $nombre',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                'Edad: $edad años',
+                style: TextStyle(fontSize: 20.0),
+              ),
+              SizedBox(height: 10.0),
+              Text(
+                'Peso: $peso kg',
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
